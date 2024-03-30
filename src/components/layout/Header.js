@@ -1,8 +1,8 @@
-
+import styles from '../../css/header.module.css'
 
 function Header(props){
     return (
-        <nav className="navbar row">
+        <nav className={styles.navbar + " row"}>
         <div className="col-12 col-md-3 ps-5">
           <div className="navbar-brand">
             <a href="/">
@@ -12,17 +12,17 @@ function Header(props){
         </div>
         <div className="col-12 col-md-6 mt-2 mt-md-0">
           <form action="your_search_action_url_here" method="get">
-            <div className="input-group">
+            <div className={styles["input-group"]}>
               <input
                 type="text"
-                id="search_field"
+                id={styles.search_field}
                 aria-describedby="search_btn"
                 className="form-control"
                 placeholder="Enter Product Name ..."
                 name="keyword"
                 value=""
               />
-              <button id="search_btn" className="btn" type="submit">
+              <button id={styles.search_btn} className="btn" type="submit">
                 <i className="fa fa-search" aria-hidden="true"></i>
               </button>
             </div>

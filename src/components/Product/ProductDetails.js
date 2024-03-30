@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { useLocation } from "react-router-dom"
 import StarRatings from "react-star-ratings"
 import { useSelector } from 'react-redux';
+import styles from '../../css/productDetail.module.css'
 
 function ProductDetails(props) {
 
@@ -13,7 +13,7 @@ console.log("item in ProductDetails", activeImg)
 
 return (
     <div className="row d-flex justify-content-around">
-        <div className="col-12 col-lg-5 img-fluid" id="product_image">
+        <div className="col-12 col-lg-5 img-fluid" id={styles.product_image}>
             <div className="p-3">
                 <img
                     className="d-block w-100"
@@ -47,7 +47,7 @@ return (
 
         <div className="col-12 col-lg-5 mt-5">
             <h3>Lorem Ipsum</h3>
-            <p id="product_id">Product # item?._id</p>
+            <p id={styles.product_id}>Product # item?._id</p>
 
             <hr />
 
@@ -60,11 +60,11 @@ return (
                     starDimension="1.8rem"
                     startSpacing="1px"
                 />
-                <span id="no-of-reviews" className="pt-1 ps-2"> ({item?.numOfReviews})Reviews </span>
+                <span id="no-of-reviews" className="pt-1 ps-2"> ({item?.numOfReviews})Reviews</span>
             </div>
             <hr />
 
-            <p id="product_price">{item?.price}</p>
+            <p id={styles.product_price}>${item?.price}</p>
             <div className="stockCounter d-inline">
                 <span className="btn btn-danger minus">-</span>
                 <input
@@ -87,7 +87,7 @@ return (
             <hr />
 
             <p>
-                Status: <span id="stock_status" className={item?.stock > 0 ? "greenColor": "redColor"}>In Stock</span>
+                Status: <span id={styles.stock_status} className={item?.stock > 0 ? styles.greenColor: styles.redColor}>In Stock</span>
             </p>
 
             <hr />
@@ -95,7 +95,7 @@ return (
             <h4 className="mt-2">Description:</h4>
             <p>{item?.description}</p>
                 <hr />
-            <p id="product_seller mb-3">Sold by: <strong>${item?.seller}</strong></p>
+            <p id={styles.product_seller + "mb-3"}>Sold by: <strong>${item?.seller}</strong></p>
         
                 <div className="alert alert-danger my-5" type="alert">
                     Login to post your review.
