@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
+import { toast } from "react-toastify"
 
 const useFetchData = ( fetchFunc ) => {
     const [ isLoading, setIsLoading ] = useState(false)
-    const [ fetcheddata, setFetchedData ] = useState(null);
+    const [ fetchedData, setFetchedData ] = useState(null);
     const [ error, setError ] = useState(null)
 
     const dispatch = useDispatch()
@@ -17,8 +18,12 @@ const useFetchData = ( fetchFunc ) => {
                 setFetchedData(data)
                 
             }catch(e){
-                console.log("some error occurred whie fetching inside useEffect", e)
-                setError("Something went wrong!")
+                console.log("some error occurred in useFetchedData", e)
+                
+                toast.error("Something went wrong!", {
+                    position: 'bottom-left'
+                })
+
             }finally{
                 setIsLoading(false)
             }
@@ -28,7 +33,7 @@ const useFetchData = ( fetchFunc ) => {
     
     },[fetchFunc])
 
-    return {isLoading, fetcheddata, error}
+    return {isLoading, fetchedData, error}
 }
 
 export default useFetchData
