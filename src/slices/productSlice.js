@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+// import { useSelector } from "react-redux";
 
 const productSlice = createSlice({
     name: "product",
@@ -17,18 +17,19 @@ const productSlice = createSlice({
     }
 })
 
-export const getProductsThunk = (page) => {
+export const getProductsThunk = (queryParams) => {
     return async (dispatch) => {
+        
+        console.log("url ot call", `http://localhost:4000/api/v1/admin/products?` + queryParams)
+
         try{
-            let response = await fetch(`http://localhost:4000/api/v1/admin/products?page=${page}`, {
+            let response = await fetch(`http://localhost:4000/api/v1/admin/products?` + queryParams, {
                 method: 'GET'
             })
 
             response = await response.json()
 
-            console.log("response", response)
-
-            dispatch(productSlice.actions.replaceTotalCount({totalCount: response?.totalCount}))
+            dispatch(productSlice.actions.replaceTotalCount({totalCount: response?.totalCount || 0}))
 
             return response
         }catch(e){

@@ -1,4 +1,5 @@
 import styles from '../../css/header.module.css'
+import Search from './Search'
 
 function Header(props){
     return (
@@ -11,22 +12,7 @@ function Header(props){
           </div>
         </div>
         <div className="col-12 col-md-6 mt-2 mt-md-0">
-          <form action="your_search_action_url_here" method="get">
-            <div className={styles["input-group"]}>
-              <input
-                type="text"
-                id={styles.search_field}
-                aria-describedby="search_btn"
-                className="form-control"
-                placeholder="Enter Product Name ..."
-                name="keyword"
-                value=""
-              />
-              <button id={styles.search_btn} className="btn" type="submit">
-                <i className="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </div>
-          </form>
+          <Search></Search>
         </div>
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
           <a href="/cart" style={{ textDecoration: "none" }}>
