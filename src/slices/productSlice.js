@@ -20,10 +20,10 @@ const productSlice = createSlice({
 export const getProductsThunk = (queryParams) => {
     return async (dispatch) => {
         
-        console.log("url ot call", `http://localhost:4000/api/v1/admin/products?` + queryParams)
+        console.log("url ot call", `${window._env_.PRODUCTS_URL}?` + queryParams)
 
         try{
-            let response = await fetch(`http://localhost:4000/api/v1/admin/products?` + queryParams, {
+            let response = await fetch(`${window._env_.PRODUCTS_URL}?` + queryParams, {
                 method: 'GET'
             })
 
@@ -34,7 +34,7 @@ export const getProductsThunk = (queryParams) => {
             return response
         }catch(e){
             console.log("some error occurred inside getProductsThunk", e)
-            throw "Error while fetching Products"
+            throw new Error("Error while fetching Products")
         }
     }
 }
@@ -42,7 +42,7 @@ export const getProductsThunk = (queryParams) => {
 export const getProductsThunkById = (product_id) => {
     return async (dispatch) => {
         try{
-            let response = await fetch(`http://localhost:4000/api/v1/products${product_id}`, {
+            let response = await fetch(`${window._env_.PROUDUCT_BY_ID})}${product_id}`, {
                 method: 'GET'
             })
 
@@ -53,7 +53,7 @@ export const getProductsThunkById = (product_id) => {
             return response.products
         }catch(e){
             console.log("some error occurred inside getProductsThunk", e)
-            throw "Error while fetching Products"
+            throw new Error("Error while fetching Product Details")
         }
     }
 }

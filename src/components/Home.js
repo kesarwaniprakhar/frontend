@@ -12,7 +12,6 @@ function Home(props) {
 
   const [params] = useSearchParams()
 
-  const page = useSelector((state) => state.pagination.page);
   const keyword = params?.get("name") || '';
 
 
@@ -20,10 +19,11 @@ function Home(props) {
 
   const {
     isLoading,
-    fetchedData: products,
+    fetchedData,
     error,
   } = useFetchData(getProductsThunk, queryParams);
 
+  const products = fetchedData?.products
   console.log("products", products);
 
   return (

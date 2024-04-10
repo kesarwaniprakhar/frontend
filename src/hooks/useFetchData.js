@@ -20,9 +20,9 @@ const useFetchData = (fetchFunc, queryParams) => {
             setIsLoading(true);
             // dispatch doesn't return a promise it is synchronous but in this context,
             // awaiting for fetchFunc to complete as dispatch is returning this function 
-            // and this function is async.
+            // and this function is async, therefore, dispatch is returning a promise.
             const data = await dispatch(fetchFunc(queryParams)); 
-            setFetchedData(data.products);
+            setFetchedData(data);
 
         } catch (e) {
 

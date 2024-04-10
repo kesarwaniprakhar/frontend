@@ -1,13 +1,26 @@
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import '../../css/login_register.css'
+import { loginThunk } from '../../slices/authSlice';
 
 function Login() {
+
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('')
+  const dispatch = useDispatch()
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+
+    dispatch(loginThunk(email, password))
+  }
+
   return (
     <div className="row wrapper">
       <div className="col-10 col-lg-5">
         <form
           className="shadow rounded bg-body"
-          action="your_submit_url_here"
-          method="post"
+          onSubmit={submitHandler}
         >
           <h2 className="mb-4">Login</h2>
           <div className="mb-3">
@@ -19,7 +32,8 @@ function Login() {
               id="email_field"
               className="form-control"
               name="email"
-              value=""
+              value={email}
+              onChange={(event)=>setEmail(event.target.value)}
             />
           </div>
 
@@ -32,7 +46,8 @@ function Login() {
               id="password_field"
               className="form-control"
               name="password"
-              value=""
+              value={password}
+              onChange={(event)=>setPassword(event.target.value)}
             />
           </div>
 
